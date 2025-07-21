@@ -26,14 +26,20 @@ def calculator():
         operation_symbol = input("Pick an operation:\n")
         num2=float(input("Enter the next number :\n"))
         calculation_function = operations[operation_symbol]
-        ans = calculation_function(num1, num2)
+        try :
+            ans = calculation_function(num1, num2)
 
-        print(f"{num1} {operation_symbol} {num2} = {ans}")
+            print(f"{num1} {operation_symbol} {num2} = {ans}")
 
-        if input(f"Type 'y' to continue calculating with {ans}. or type 'n' to start a new calculation: ") == 'y':
-            num1=ans
-        else :
-            should_continue=False
+            if input(f"Type 'y' to continue calculating with {ans}. or type 'n' to start a new calculation: ") == 'y':
+                num1=ans
+            else :
+                should_continue=False
+                calculator()
+
+        except :
+            print("You cannot divide by zero.")
+            should_continue = False
             calculator()
 
 calculator()
